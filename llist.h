@@ -168,8 +168,16 @@ template <class T> void LinkedList::list<T>::erase(int index){
 }
 
 template <class T> void LinkedList::list<T>::push_back(T data){
-    tail->next = new LinkedList::node<T>(data, nullptr, tail);
-    tail = tail->next;
+    LinkedList::node<T> *newnode = new LinkedList::node<T>(data);
+    if(tail == nullptr){
+        head = newnode;
+        tail = newnode;
+    }
+    else{
+        newnode->prev = tail;
+        tail->next = newnode;
+        tail = newnode;
+    }
     _size++;
 }
 

@@ -23,13 +23,28 @@ int main(int argc, char** argv){
     LinkedList::list<int> *myList = new LinkedList::list<int>();
 
     for (size_t i = 0; i < listSize; i++){
-        myList->push_back(1);
+        myList->push_back(randomNumber(0, maxNumber));
     }
 
-    std::cout << "Done initializing double linked list" << std::endl;
-
-    //print the list
+    // print the list
     std::cout << "List: " << *myList << std::endl;
+
+    //find the maximum value in the list
+
+    LinkedList::node<int> *currentNode = myList->begin();
+    int max = currentNode->data;
+
+    while(currentNode != nullptr){
+        if(currentNode->data > max){
+            max = currentNode->data;
+        }
+        currentNode = currentNode->next;
+    }
+
+    std::cout << "Max: " << max << std::endl;
+
+    //delete the list
+    delete myList;
 
 
 }
